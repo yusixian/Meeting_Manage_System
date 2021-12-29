@@ -1,0 +1,7 @@
+kernel
+kernel.dao
+kernel.dao.Impl
+kernel.entity
+kernel.service
+kernel.util
+kernel.views
