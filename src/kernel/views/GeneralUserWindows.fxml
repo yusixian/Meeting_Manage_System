@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kernel.views.GeneralUserController">
     <top>
         <AnchorPane prefHeight="61.0" prefWidth="1253.0" styleClass="topBar" stylesheets="@css/menuBars.css" BorderPane.alignment="CENTER">
@@ -83,7 +85,7 @@
    <center>
       <StackPane prefHeight="491.0" prefWidth="2346.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane fx:id="scheduleMeetingPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/subscriptionView.css" visible="false">
+            <BorderPane fx:id="scheduleMeetingPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/subscriptionView.css">
                <left>
                   <VBox prefHeight="837.0" prefWidth="679.0">
                      <children>
@@ -419,7 +421,7 @@
                   </HBox>
                </top>
             </BorderPane>
-            <BorderPane fx:id="myMeetingPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/generalUserOrderView.css">
+            <BorderPane fx:id="myMeetingPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/generalUserOrderView.css" visible="false">
                <center>
                   <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
