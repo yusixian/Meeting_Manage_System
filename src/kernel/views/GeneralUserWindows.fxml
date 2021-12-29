@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kernel.views.GeneralUserController">
+    <top>
+        <AnchorPane prefHeight="61.0" prefWidth="1253.0" styleClass="topBar" stylesheets="@css/menuBars.css" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="63.0" prefWidth="820.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Label prefHeight="38.0" prefWidth="250.0" text="会议室管理系统" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="20.0" top="6.0" />
+                            </HBox.margin>
+                        </Label>
+                        <Label fx:id="userNameLabel" alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="30.0" prefWidth="303.0" text="用户名" textFill="#fdff80">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="244.0" text="，欢迎来到会议室管理系统" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="10.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+               <padding>
+                  <Insets top="6.0" />
+               </padding>
+                </HBox>
+                <HBox layoutX="983.0" layoutY="3.0" prefHeight="52.0" prefWidth="412.0">
+               <children>
+                  <Label onMouseClicked="#jumpToSubscriptionPane" prefHeight="47.0" prefWidth="82.0" text="预定会议" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label onMouseClicked="#jumpToPersonInfoPane" prefHeight="47.0" prefWidth="123.0" text="个人信息修改" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label onMouseClicked="#jumpToMyMeetingPane" prefHeight="47.0" prefWidth="85.0" text="我的会议" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label onMouseClicked="#handleLogout" prefHeight="46.0" prefWidth="43.0" text="退出" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding></HBox>
+            </children>
+        </AnchorPane>
+    </top>
+   <center>
+      <StackPane prefHeight="491.0" prefWidth="2346.0" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane fx:id="scheduleMeetingPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/subscriptionView.css" visible="false">
+               <left>
+                  <VBox prefHeight="837.0" prefWidth="679.0">
+                     <children>
+                            <TableView fx:id="roomsTable" prefHeight="837.0" prefWidth="727.0">
+                                <columns>
+                              <TableColumn fx:id="roomAddressColumn" minWidth="-1.0" prefWidth="75.0" text="会议室地址" />
+                                    <TableColumn fx:id="roomNameColumn" minWidth="-1.0" prefWidth="236.0" text="会议室名称" />
+                                    <TableColumn fx:id="roomHourPriceColumn" minWidth="-1.0" prefWidth="101.0" text="一小时费用（￥）" />
+                              <TableColumn fx:id="roomCapacityColumn" minWidth="-1.0" prefWidth="129.0" text="可容纳人数" />
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                </columnResizePolicy>
+                            </TableView>
+                     </children>
+                  </VBox>
+               </left>
+               <center>
+                  <BorderPane minWidth="10.0" prefHeight="725.0" prefWidth="721.0" BorderPane.alignment="CENTER">
+                     <top>
+                        <AnchorPane prefHeight="80.0" prefWidth="713.0" style="-fx-background-color: #F3FAFF;" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox layoutX="62.0" prefHeight="60.0" prefWidth="394.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="133.0" text="持续时间：" textFill="#333333">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="16.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ChoiceBox fx:id="durationChoiceBox" prefHeight="40.0" prefWidth="85.0">
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="12.0" />
+                                       </HBox.margin>
+                                    </ChoiceBox>
+                                    <Label prefHeight="55.0" prefWidth="94.0" text="个小时" textFill="#333333">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="363.0" layoutY="24.0" prefHeight="52.0" prefWidth="362.0" AnchorPane.topAnchor="24.0">
+                                 <children>
+                                    <Label fx:id="totalPriceLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="43.0" prefWidth="245.0" text="预计费用:1000￥" textAlignment="RIGHT" textFill="ORANGE">
+                                       <font>
+                                          <Font name="System Bold" size="22.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Button fx:id="confirmScheduleButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleConfirm" prefHeight="41.0" prefWidth="93.0" text="确认" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="10.0" top="5.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                        </AnchorPane>
+                     </top>
+                     <bottom>
+                        <VBox prefHeight="476.0" prefWidth="721.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <StackPane prefHeight="59.0" prefWidth="636.0">
+                                 <children>
+                                    <Label text="会议室详情">
+                                       <font>
+                                          <Font size="29.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <GridPane prefHeight="373.0" prefWidth="636.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="217.0" minHeight="10.0" prefHeight="132.0" valignment="TOP" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label fx:id="roomAddressLabel" text="会议室地址：4号楼4322" GridPane.rowIndex="1" />
+                                    <Label fx:id="roomNameLabel" text="会议室名称：大会议室" GridPane.rowIndex="2" />
+                                    <Label fx:id="roomCapacityLabel" text="可容纳人数：200人" GridPane.rowIndex="4" />
+                                    <Label fx:id="roomIDLabel" prefHeight="29.0" prefWidth="224.0" text="会议室编号：1">
+                                       <font>
+                                          <Font size="29.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="roomHourPriceLabel" text="一小时费用：60￥" GridPane.rowIndex="3" />
+                                    <Label fx:id="roomDesIntroLabel" alignment="TOP_LEFT" prefHeight="189.0" prefWidth="649.0" text="会议室描述：可容纳200人的大会议室，适合进行大型会议" textAlignment="JUSTIFY" wrapText="true" GridPane.rowIndex="5">
+                                       <GridPane.margin>
+                                          <Insets top="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets left="50.0" right="50.0" />
+                                 </opaqueInsets>
+                              </GridPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="30.0" left="55.0" right="30.0" top="10.0" />
+                           </padding>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                        </VBox>
+                     </bottom>
+                     <center>
+                        <HBox prefHeight="289.0" prefWidth="721.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <GridPane prefHeight="112.0" prefWidth="689.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="158.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.0" minWidth="10.0" prefWidth="503.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label fx:id="roomIDLabel1" alignment="TOP_RIGHT" prefHeight="95.0" prefWidth="174.0" text="会议说明：" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font size="29.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="roomIDLabel11" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="175.0" text="预计参会人数：" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="29.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="meetPartNumField" promptText="预计参会人数" text="20" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextArea fx:id="meetDesIntroTextArea" prefHeight="200.0" prefWidth="200.0" promptText="简要说明一下该会议用途" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </TextArea>
+                                    <Label fx:id="roomIDLabel111" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="175.0" text="会议名称：">
+                                       <font>
+                                          <Font size="29.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="meetNameTextField" promptText="会议名称" text="预定会议" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="roomIDLabel112" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="175.0" text="开始时间：" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="29.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="meetStartTimeField" promptText="例：2021-12-30 16:00:00" text="2021-12-30 16:00:00" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </GridPane>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </center>
+                  </BorderPane>
+               </center>
+            </BorderPane>
+            <BorderPane fx:id="personalInfoPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/subscriptionView.css" visible="false">
+               <center>
+                  <HBox onDragDetected="#handleChange" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox prefHeight="733.0" prefWidth="137.0">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="40.0" prefWidth="137.0" text="用户名：" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="47.0" prefWidth="137.0" text="密码：" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="49.0" prefWidth="135.0" text="真实姓名：" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="46.0" prefWidth="135.0" text="身份证号：" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="45.0" prefWidth="135.0" text="联系电话：" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="45.0" prefWidth="135.0" text="联系地址：" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="380.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="733.0" prefWidth="264.0">
+                           <children>
+                              <TextField fx:id="userNameField" promptText="用户名">
+                                 <VBox.margin>
+                                    <Insets top="18.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="passWordField" promptText="密码">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="14.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="realNameField" promptText="真实姓名">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="14.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="idCardField" promptText="身份证号">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="14.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="phoneField" promptText="联系电话">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="14.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="addressField" promptText="联系地址">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="14.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Button mnemonicParsing="false" onAction="#handleChange" text="确认修改" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="40.0" top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </center>
+               <top>
+                  <HBox prefHeight="46.0" prefWidth="1256.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="35.0" prefWidth="237.0" text="请谨慎修改个人信息!" textAlignment="CENTER" textFill="#ff5555">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="500.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </top>
+            </BorderPane>
+            <BorderPane fx:id="myMeetingPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/generalUserOrderView.css">
+               <center>
+                  <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox prefHeight="837.0" prefWidth="1423.0">
+                           <children>
+                              <TableView fx:id="myMeetingTable" prefHeight="271.0" prefWidth="1311.0">
+                                <columns>
+                                  <TableColumn fx:id="myMeetIDColumn" prefWidth="50.0" text="会议编号" />
+                                  <TableColumn fx:id="myMeetNameColumn" prefWidth="70.0" text="会议名称" />
+                                    <TableColumn fx:id="myMeetStartTimeColumn" prefWidth="158.0" text="开始时间" />
+                                    <TableColumn fx:id="myMeetDurationColumn" prefWidth="288.0" text="持续时间" />
+                                    <TableColumn fx:id="myMeetPartNumColumn" prefWidth="259.0" text="参会人数" />
+                                    <TableColumn fx:id="myMeetPriceColumn" prefWidth="187.0" text="支付费用（￥）" />
+                                </columns>
+                                 <VBox.margin>
+                                    <Insets left="30.0" right="30.0" top="20.0" />
+                                 </VBox.margin>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <HBox prefHeight="558.0" prefWidth="1256.0">
+                                 <children>
+                                    <StackPane>
+                                       <children>
+                                          <VBox prefHeight="526.0" prefWidth="1505.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="51.0" prefWidth="1320.0" text="会议详情" textFill="#333333">
+                                                   <font>
+                                                      <Font name="System Bold" size="30.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <GridPane prefHeight="392.0" prefWidth="1320.0">
+                                                   <children>
+                                                      <Label fx:id="roomIDLabel11" alignment="TOP_RIGHT" prefHeight="95.0" prefWidth="327.0" text="会议说明：" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="roomIDLabel111" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="264.0" text="预计参会人数：" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="roomIDLabel1111" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="285.0" text="会议名称：">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="roomIDLabel1121" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="302.0" text="开始时间：" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="myMeetNameLabel" prefHeight="86.0" prefWidth="387.0" text="战略会议" textFill="STEELBLUE" GridPane.columnIndex="1">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="10.0" />
+                                                         </GridPane.margin>
+                                                      </Label>
+                                                      <Label fx:id="myMeetPartNumLabel" prefHeight="86.0" prefWidth="387.0" text="220" textFill="STEELBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="10.0" />
+                                                         </GridPane.margin>
+                                                      </Label>
+                                                      <Label fx:id="myMeetStartTimeLabel" prefHeight="86.0" prefWidth="387.0" text="2021-11-21 16:00:00" textFill="STEELBLUE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                         <padding>
+                                                            <Insets left="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label fx:id="myMeetDesIntroLabel" prefHeight="201.0" prefWidth="460.0" text="原神2020年三个月的海外收入占中国服务业海外收入百分之一，今年有望达到百分之十，是史上最黑暗的一年" textFill="STEELBLUE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="10.0" />
+                                                         </GridPane.margin>
+                                                      </Label>
+                                                      <Label fx:id="roomIDLabel11112" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="285.0" text="会议室地址：" GridPane.columnIndex="2">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="roomIDLabel111121" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="285.0" text="会议室名称：" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="myMeetRoomAddressLabel" prefHeight="63.0" prefWidth="330.0" text="图书馆一楼" textFill="STEELBLUE" GridPane.columnIndex="3">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="10.0" />
+                                                         </GridPane.margin>
+                                                      </Label>
+                                                      <Label fx:id="myMeetRoomNameLabel" prefHeight="86.0" prefWidth="387.0" text="学术报告厅" textFill="STEELBLUE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="10.0" />
+                                                         </GridPane.margin>
+                                                      </Label>
+                                                      <Label fx:id="roomIDLabel1112" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="264.0" text="预计持续时间：" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="myMeetDurationLabel" prefHeight="86.0" prefWidth="387.0" text="1小时" textFill="STEELBLUE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                         <GridPane.margin>
+                                                            <Insets left="10.0" />
+                                                         </GridPane.margin>
+                                                      </Label>
+                                                      <Label fx:id="roomIDLabel11121" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="264.0" text="费用合计：" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                         <children>
+                                                            <Label fx:id="myMeetPriceLabel" alignment="CENTER_RIGHT" prefHeight="139.0" prefWidth="96.0" text="200" textFill="ORANGE" wrapText="true">
+                                                               <font>
+                                                                  <Font name="System Bold" size="22.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label fx:id="roomIDLabel11111211111" prefHeight="139.0" prefWidth="27.0" text="￥" textFill="ORANGE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="22.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="10.0" prefWidth="271.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="701.0" minWidth="10.0" prefWidth="473.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="701.0" minWidth="10.0" prefWidth="199.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="701.0" minWidth="10.0" prefWidth="387.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                                       </HBox.margin>
+                                    </StackPane>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </center></BorderPane>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

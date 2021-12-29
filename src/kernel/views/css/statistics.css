@@ -1,0 +1,13 @@
+Button {
+    -fx-text-fill: white;
+    -fx-background-color: black;
+}
+.default-color0.chart-bar {
+    -fx-bar-fill: #85B1CC
+}
+.default-color1.chart-bar {
+    -fx-bar-fill: #85B1CC
+}
+HBox {
+    -fx-background-color: #F3FAFF;
+}

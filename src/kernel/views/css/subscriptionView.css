@@ -1,0 +1,66 @@
+HBox {
+    -fx-background-color: #F3FAFF;
+}
+VBox {
+    -fx-background-color: #F3FAFF;
+}
+GridPane > Label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 22px;
+}
+
+Button {
+    -fx-text-fill: white;
+    -fx-background-color: #85B1CC; /*#202020;*/
+}
+
+Button:hover {
+     -fx-text-fill: #81F3FF;
+     -fx-effect: dropshadow(three-pass-box, #202020, 10.0,0, 0, 0);
+ }
+/*表总体*/
+.table-view {
+    /*主色调底色*/
+    -fx-base: #85B1CC;
+    -fx-font-size: 19px;
+    /*item背景色*/
+    -fx-control-inner-background: #F3FAFF;
+    /*总的背景色 包括蓝色提示框*/
+    -fx-background-color: #85B1CC; /*#FFC0CB;*/
+    /*两个border的颜色透明*/
+    -fx-table-cell-border-color:  transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-alignment: center;
+}
+
+/*搞定背景色*/
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler{
+    -fx-background-color: transparent;
+}
+
+/*表头文字*/
+.table-view .column-header .label {
+    -fx-font-size: 20px;
+    -fx-text-fill: #FFFAFA;
+    -fx-alignment: center-left;
+}
+
+.table-view .column-header {
+    -fx-pref-height: 42px;
+}
+.choice-box {
+    -fx-background-color: #85B1CC;
+}
+
+.choice-box > .label {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+/*下拉盒子旁的小三角*/
+.choice-box > .open-button > .arrow {
+    -fx-background-color: white;
+}
