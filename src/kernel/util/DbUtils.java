@@ -14,7 +14,7 @@ import java.util.Map;
  * TODO:换数据库的话,新建某个数据库运行dbs中的newSystem.sql文件,然后更改开头的数据库URL,USER,PASSWORD为自己的
  */
 public class DbUtils {
-    private static String URL = "jdbc:mysql://localhost:3306/meetingms?characterEncoding=utf-8&serverTimezone=UTC";
+    private static String URL = "jdbc:mysql://localhost:3306/meetingms?characterEncoding=utf-8&serverTimezone=GMT%2B8";
     private static String USER = "userName";
     private static String PASSWORD ="password";
     private static String DRIVER = "com.mysql.cj.jdbc.Driver";
